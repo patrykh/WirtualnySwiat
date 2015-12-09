@@ -13,7 +13,7 @@ protected:
 	int numerTury = 0;
 public:
 	std::list <Organizm*> Organizmy; // ?? sortowanie listy wed³ug inicjatywy (albo wieku?)
-	std::vector<std::vector<char> > mapa;
+
 	void SetRozmiar(int x, int y);
 	int getRozmiarX();
 	int getRozmiarY();
@@ -23,6 +23,9 @@ public:
 	void wykonajTure();// int numerTury);
 	void sortujOrganizmy();
 	void usunMartweOrganizmy();
+	void mapa();
+
+
 	Organizm* czyKolizja(int polozenieX,int polozenieY);
 	Swiat();
 	Swiat(int x, int y); 

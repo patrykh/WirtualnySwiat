@@ -1,6 +1,6 @@
 #pragma once
 #include "Organizm.h"
-
+class Swiat;
 class Zwierze :
 	public Organizm
 {

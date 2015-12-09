@@ -11,7 +11,7 @@ protected:
 	bool czyZyje = true;
 	int polozenieX = 0, polozenieY = 0; // po³o¿enie
 	std::string gatunek;
-	Swiat* Swiat;
+	//Swiat* swiat = 0;
 public:
 	//polozenie(x,y)
 	//referencja do swiata
@@ -24,6 +24,8 @@ public:
 
 	//Pozycja
 	void setPozycja(int x, int y);
+	//Organizm* czyKolizja(int polozenieX, int polozenieY);
+
 	int getPozX()		{ return this->polozenieX; }
 	int getPozY()		{ return this->polozenieY; }
 	int getSila()		{ return this->sila; }

@@ -39,26 +39,27 @@ void Swiat::listaOrganizmow()
 void Swiat::wykonajTure()//int numerTury)
 {
 	// TODO metoda sortowanie
+	int wymiarX = this->getRozmiarX();
+	int wymiarY = this->getRozmiarY();
 
 	// pêtla po liœcie organizmów
 	// if czy zyje -> akcja() else -> brak
 	// usun martwe organizmy
 	cout << "wykonajTure";
 	this->sortujOrganizmy();
-	auto aktualneOrganizmy = this->Organizmy;
-	for (auto organizm : aktualneOrganizmy)
+	//auto aktualneOrganizmy = this->Organizmy;
+	for (auto organizm : Organizmy)
 	{
 		cout << "wykonajTure_for";
 		if (organizm->getCzyZyje())
 		{
 			cout << "wykonajTure_if";
-			organizm->akcja();
+			organizm->akcja(wymiarX, wymiarY);
 		}
 	}
 	cout << "wykonajTure koniec";
 	this->usunMartweOrganizmy();
-
-
+	numerTury++;
 }
 
 void Swiat::sortujOrganizmy()
@@ -106,17 +107,17 @@ void Swiat::usunMartweOrganizmy()
 Organizm* Swiat::czyKolizja(int polozenieX, int polozenieY)
 {
 	std::cout << "czyKolizja_start";
-	for (auto organizm : this->Organizmy)   // organizm*
-	{
-		std::cout << "czyKolizja_for";
-		if (organizm->getCzyZyje() 
-			&& organizm->getPozX() == polozenieX 
-			&& organizm->getPozY() == polozenieY)
-		{
-			std::cout << "czyKolizja_ret_org";
-			return organizm;
-		}
-	}
+	//for (auto organizm : swiat->Organizmy)   // organizm*
+	//{
+	//	std::cout << "czyKolizja_for";
+	//	if (organizm->getCzyZyje()
+	//		&& organizm->getPozX() == polozenieX
+	//		&& organizm->getPozY() == polozenieY)
+	//	{
+	//		std::cout << "czyKolizja_ret_org";
+	//		return organizm;
+	//	}
+	//}
 	std::cout << "czyKolizja_ret_nullptr";
 	return nullptr;
 
@@ -130,31 +131,65 @@ Organizm* Swiat::czyKolizja(int polozenieX, int polozenieY)
 	//return nullptr; // Gdy nie ma organizmu
 }
 
-Swiat::Swiat()
+
+void Swiat::mapa()
 {
 	vector< vector<char> > mapa(20, vector<char>(20, '+'));
-	
+
 	/*for (size_t i = 0; i < mapa.size(); ++i) {
-		for (size_t j = 0; j < mapa.at(i).size(); ++j)
-			mapa.at(i).at(j) = '2';
+	for (size_t j = 0; j < mapa.at(i).size(); ++j)
+	mapa.at(i).at(j) = '2';
 	}*/
-	
+
 	//Wypelnienie organizmami
-	this->listaOrganizmow();
+
 	for (auto organizm : this->Organizmy)
 	{
 		mapa.at(organizm->getPozX()).at(organizm->getPozY()) = organizm->rysowanie();
 	}
 
 	//Wyswietlenie
+	cout << endl;
 	for (size_t i = 0; i < mapa.size(); ++i) {
 		for (size_t j = 0; j < mapa.at(i).size(); ++j)
 			cout << mapa.at(i).at(j) << ' ';
 
 		cout << endl;
 	}
+	cout << endl;
+}
 
-	
+//Organizm* Swiat::czyKolizja(int polozenieX, int polozenieY)
+//{
+//	std::cout << "czyKolizja_start";
+//	for (auto organizm : this->Organizmy)   // organizm*
+//	{
+//		std::cout << "czyKolizja_for";
+//		if (organizm->getCzyZyje() 
+//			&& organizm->getPozX() == polozenieX 
+//			&& organizm->getPozY() == polozenieY)
+//		{
+//			std::cout << "czyKolizja_ret_org";
+//			return organizm;
+//		}
+//	}
+//	std::cout << "czyKolizja_ret_nullptr";
+//	return nullptr;
+//
+//	//Pokombinowaæ??
+//	//Organizm* organizm;
+//
+//	//if (polozenieX == organizm->getPozX() && polozenieX == organizm->getPozX())
+//	//{
+//	//	return organizm;
+//	//}
+//	//return nullptr; // Gdy nie ma organizmu
+//}
+
+Swiat::Swiat()
+{
+	this->listaOrganizmow();
+	this->mapa();
 }
 
 Swiat::Swiat(int x, int y)

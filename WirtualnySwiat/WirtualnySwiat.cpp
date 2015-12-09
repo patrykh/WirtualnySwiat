@@ -10,7 +10,17 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
 	Swiat *swiat1 = new Swiat();
-		swiat1->wykonajTure();
+
+	swiat1->wykonajTure();
+	swiat1->mapa();
+	swiat1->wykonajTure();
+	swiat1->mapa();
+	swiat1->wykonajTure();
+	swiat1->mapa();
+	swiat1->wykonajTure();
+	swiat1->mapa();
+	swiat1->wykonajTure();
+	swiat1->mapa();
 	int x;
 	return 0;
 }
