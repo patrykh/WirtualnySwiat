@@ -2,7 +2,8 @@
 #include "Swiat.h"
 #include <iostream>
 
-void Zwierze::akcja()
+
+void Zwierze::akcja(int wymiarX, int wymiarY)
 {
 	std::cout << "akcja1";
 	const int ruchy[2] = { -1, 1 }; 
@@ -17,27 +18,24 @@ void Zwierze::akcja()
 	//polozenie organizmu
 	int _polozenieX = polozenieX; 
 	int	_polozenieY = polozenieY;
-	int wymiarX = 20;// Swiat->getRozmiarX();
+	//int wymiarX = swiat->getRozmiarX();
 	std::cout << "akcja2";
-	int wymiarY = 20;// Swiat->getRozmiarY();
+	//int wymiarY = swiat->getRozmiarY();
 	std::cout << "akcja3";
+
 	index = (rand() % 2);
 	ruch = ruchy[index];
 	std::cout << "akcja4";
-	while (!czyRuszyl && proba <= 4) {
+	while (!czyRuszyl && proba <= 8) {
 		std::cout << "akcja5";
 		switch (kierunek[index])
 		{
 		case 'x':
 			std::cout << "akcja6";
-			if (_polozenieX + ruch < wymiarX || _polozenieX + ruch > 0)
+			if (_polozenieX + ruch < wymiarX && _polozenieX + ruch >= 0)
 			{
 				std::cout << "akcja7";
-<<<<<<< HEAD
-				if (this->czyKolizja(_polozenieX + ruch, _polozenieY) == nullptr)
-=======
-				if (Swiat->czyKolizja(_polozenieX + ruch, _polozenieY) == nullptr)
->>>>>>> parent of cfc2680... Migracja metod
+				if (this->swiat->czyKolizja(_polozenieX + ruch, _polozenieY) == nullptr)
 				{
 					std::cout << "akcja8";
 					this->polozenieX += ruch;
@@ -46,11 +44,7 @@ void Zwierze::akcja()
 
 				} else
 				{
-<<<<<<< HEAD
-					przeciwnik = this->czyKolizja(_polozenieX + ruch, _polozenieY);
-=======
-					przeciwnik = Swiat->czyKolizja(_polozenieX + ruch, _polozenieY);
->>>>>>> parent of cfc2680... Migracja metod
+					przeciwnik = this->swiat->czyKolizja(_polozenieX + ruch, _polozenieY);
 					kolizja(przeciwnik);
 				}
 				
@@ -58,14 +52,10 @@ void Zwierze::akcja()
 			break;
 		case 'y':
 			std::cout << "akcja6";
-			if (_polozenieY + ruch < wymiarY || _polozenieY + ruch > 0)
+			if (_polozenieY + ruch < wymiarY && _polozenieY + ruch >= 0)
 			{
 				std::cout << "akcja7";
-<<<<<<< HEAD
-				if (this->czyKolizja(_polozenieX, _polozenieY + ruch) == nullptr)
-=======
-				if (Swiat->czyKolizja(_polozenieX, _polozenieY + ruch) == nullptr)
->>>>>>> parent of cfc2680... Migracja metod
+				if (this->swiat->czyKolizja(_polozenieX, _polozenieY + ruch) == nullptr)
 				{
 					std::cout << "akcja8";
 					this->polozenieY += ruch;
@@ -74,11 +64,7 @@ void Zwierze::akcja()
 				}
 				else
 				{
-<<<<<<< HEAD
-					przeciwnik = this->czyKolizja(_polozenieX, _polozenieY + ruch);
-=======
-					przeciwnik = Swiat->czyKolizja(_polozenieX, _polozenieY + ruch);
->>>>>>> parent of cfc2680... Migracja metod
+					przeciwnik = this->swiat->czyKolizja(_polozenieX, _polozenieY + ruch);
 					kolizja(przeciwnik);
 				}
 				
@@ -92,19 +78,27 @@ void Zwierze::akcja()
 
 bool Zwierze::kolizja(Organizm* przeciwnik)
 {
+	std::cout << "kolizja_start";
 	if (this->getSila() > przeciwnik->getSila())
 	{
+		std::cout << "kolizja_if";
 		//usuñ przeciwnika 
 		// Jak usun¹æ przeciwnika?
 		przeciwnik->gin();
-	} else
+	}
+	else if(this->getSymbol() == przeciwnik->getSymbol())
 	{
+
+	}
+	else
+	{
+		std::cout << "kolizja_else";
 		this->gin();
 	}
 	return false;
 }
 
-Zwierze::Zwierze()
+Zwierze::Zwierze(Swiat* swiat) : Organizm(swiat)
 {
 
 }

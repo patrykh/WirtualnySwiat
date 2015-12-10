@@ -63,6 +63,9 @@
     <ClInclude Include="ekran.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Jez.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -108,6 +111,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ekran.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Jez.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

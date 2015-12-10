@@ -3,8 +3,12 @@
 class Leniwiec :
 	public Zwierze
 {
+	
 public:
-	Leniwiec();
+	int blokada = 0;
+	char getSymbol() override;
+	void akcja(int wymiarX, int wymiarY) override; // ruch
+	Leniwiec(Swiat* swiat, int pozycjaX, int pozycjaY);
 	~Leniwiec();
 };
 

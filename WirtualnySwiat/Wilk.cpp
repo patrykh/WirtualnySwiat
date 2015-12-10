@@ -1,13 +1,13 @@
 #include "Wilk.h"
 
 
-char Wilk::rysowanie()
+char Wilk::getSymbol()
 {
 	return 'W';
 }
 
 
-Wilk::Wilk(int pozycjaX, int pozycjaY)
+Wilk::Wilk(Swiat* swiat, int pozycjaX, int pozycjaY) : Zwierze(swiat)
 {
 	sila = 9;
 	inicjatywa = 5;

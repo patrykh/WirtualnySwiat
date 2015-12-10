@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ekran.h" />
+    <ClInclude Include="Jez.h" />
     <ClInclude Include="Koka.h" />
     <ClInclude Include="Leniwiec.h" />
     <ClInclude Include="Lis.h" />
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ekran.cpp" />
+    <ClCompile Include="Jez.cpp" />
     <ClCompile Include="Koka.cpp" />
     <ClCompile Include="Leniwiec.cpp" />
     <ClCompile Include="Lis.cpp" />

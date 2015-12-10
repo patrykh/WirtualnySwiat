@@ -4,7 +4,8 @@ class Trawa :
 	public Roslina
 {
 public:
-	Trawa();
+	char getSymbol() override;
+	Trawa(Swiat* swiat, int pozycjaX, int pozycjaY);
 	~Trawa();
 };
 

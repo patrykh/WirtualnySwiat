@@ -4,7 +4,8 @@ class Lis :
 	public Zwierze
 {
 public:
-	Lis();
+	char getSymbol() override;
+	Lis(Swiat* swiat, int pozycjaX, int pozycjaY);
 	~Lis();
 };
 

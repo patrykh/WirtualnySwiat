@@ -4,7 +4,8 @@ class Owca :
 	public Zwierze
 {
 public:
-	Owca();
+	char getSymbol() override;
+	Owca(Swiat* swiat, int pozycjaX, int pozycjaY);
 	~Owca();
 };
 

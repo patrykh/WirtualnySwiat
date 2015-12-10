@@ -1,18 +1,16 @@
 #include "koka.h"
 
 
-koka::koka()
+char Koka::getSymbol()
 {
+	return 'K';
 }
 
-
-koka::~koka()
+Koka::Koka(Swiat* swiat, int pozycjaX, int pozycjaY) : Roslina(swiat)
 {
-}
-
-
-Koka::Koka()
-{
+	sila = 0;
+	gatunek = 'Koks';
+	setPozycja(pozycjaX, pozycjaY);
 }
 
 

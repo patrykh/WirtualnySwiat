@@ -10,9 +10,9 @@ bool Roslina::kolizja(Organizm* przeciwnik)
 	return false;
 }
 
-Roslina::Roslina()
+Roslina::Roslina(Swiat* swiat) : Organizm(swiat)
 {
-
+	
 }
 
 Roslina::~Roslina()

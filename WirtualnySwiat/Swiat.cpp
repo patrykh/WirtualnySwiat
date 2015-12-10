@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 #include "Wilk.h"
+#include "Owca.h"
+#include "Leniwiec.h"
 
 using namespace std;
 
@@ -24,46 +26,46 @@ int Swiat::getRozmiarY()
 	return this->y;
 }
 
-void Swiat::wykonajTure(Organizm *& organizm)//int numerTury)
+void Swiat::dodajOrganizmy(Organizm* nowyOrganizm)
+{
+	this->Organizmy.push_back(nowyOrganizm);
+}
+
+void Swiat::listaOrganizmow()
+{
+	this->dodajOrganizmy(new Leniwiec(this, 10, 6));
+	/*this->dodajOrganizmy(new Owca(this, 2, 5));
+	this->dodajOrganizmy(new Wilk(this, 8, 9));
+	this->dodajOrganizmy(new Wilk(this, 15, 9));
+	this->dodajOrganizmy(new Owca(this, 10, 6));
+	this->dodajOrganizmy(new Owca(this, 2, 16));
+	this->dodajOrganizmy(new Wilk(this, 8, 4));*/
+}
+
+void Swiat::wykonajTure()//int numerTury)
 {
 	// TODO metoda sortowanie
+	int wymiarX = this->getRozmiarX();
+	int wymiarY = this->getRozmiarY();
 
 	// pêtla po liœcie organizmów
 	// if czy zyje -> akcja() else -> brak
 	// usun martwe organizmy
 	cout << "wykonajTure";
-<<<<<<< HEAD
-	organizm->sortujOrganizmy();
-	//auto aktualneOrganizmy = this->Organizmy;
-	for (auto o : o->Organizmy)
-=======
 	this->sortujOrganizmy();
-	auto aktualneOrganizmy = this->Organizmy;
-	for (auto organizm : aktualneOrganizmy)
->>>>>>> parent of cfc2680... Migracja metod
+	//auto aktualneOrganizmy = this->Organizmy;
+	for (auto organizm : Organizmy)
 	{
 		cout << "wykonajTure_for";
-		if (o->getCzyZyje())
+		if (organizm->getCzyZyje())
 		{
 			cout << "wykonajTure_if";
-<<<<<<< HEAD
-			o->akcja(wymiarX, wymiarY);
-		}
-	}
-	cout << "wykonajTure koniec";
-	organizm->usunMartweOrganizmy();
-	numerTury++;
-}
-
-void Swiat::mapa(Organizm *& organizm)
-=======
-			organizm->akcja();
+			organizm->akcja(wymiarX, wymiarY);
 		}
 	}
 	cout << "wykonajTure koniec";
 	this->usunMartweOrganizmy();
-
-
+	numerTury++;
 }
 
 void Swiat::sortujOrganizmy()
@@ -114,8 +116,8 @@ Organizm* Swiat::czyKolizja(int polozenieX, int polozenieY)
 	for (auto organizm : this->Organizmy)   // organizm*
 	{
 		std::cout << "czyKolizja_for";
-		if (organizm->getCzyZyje() 
-			&& organizm->getPozX() == polozenieX 
+		if (organizm->getCzyZyje()
+			&& organizm->getPozX() == polozenieX
 			&& organizm->getPozY() == polozenieY)
 		{
 			std::cout << "czyKolizja_ret_org";
@@ -135,66 +137,65 @@ Organizm* Swiat::czyKolizja(int polozenieX, int polozenieY)
 	//return nullptr; // Gdy nie ma organizmu
 }
 
-Swiat::Swiat()
->>>>>>> parent of cfc2680... Migracja metod
+
+void Swiat::mapa()
 {
 	vector< vector<char> > mapa(20, vector<char>(20, '+'));
-	
-	/*for (size_t i = 0; i < mapa.size(); ++i) {
-		for (size_t j = 0; j < mapa.at(i).size(); ++j)
-			mapa.at(i).at(j) = '2';
-	}*/
-	
-	//Wypelnienie organizmami
-<<<<<<< HEAD
 
-	for (auto o : o->Organizmy)
-=======
-	this->listaOrganizmow();
+	/*for (size_t i = 0; i < mapa.size(); ++i) {
+	for (size_t j = 0; j < mapa.at(i).size(); ++j)
+	mapa.at(i).at(j) = '2';
+	}*/
+
+	//Wypelnienie organizmami
+
 	for (auto organizm : this->Organizmy)
->>>>>>> parent of cfc2680... Migracja metod
 	{
-		mapa.at(o->getPozX()).at(o->getPozY()) = o->rysowanie();
+		mapa.at(organizm->getPozX()).at(organizm->getPozY()) = organizm->getSymbol();
 	}
 
 	//Wyswietlenie
+	cout << endl;
 	for (size_t i = 0; i < mapa.size(); ++i) {
 		for (size_t j = 0; j < mapa.at(i).size(); ++j)
 			cout << mapa.at(i).at(j) << ' ';
 
 		cout << endl;
 	}
-<<<<<<< HEAD
 	cout << endl;
 }
 
-Swiat::Swiat(Organizm *& organizm)
-{
-	organizm->listaOrganizmow();
-	this->mapa(organizm);
-
-}
-
-//Swiat::Swiat(int x, int y)
+//Organizm* Swiat::czyKolizja(int polozenieX, int polozenieY)
 //{
-//	vector< vector<char> > mapa(x, vector<char>(y, '+'));
-//	this->listaOrganizmow();
-//	for (auto organizm : this->Organizmy)
+//	std::cout << "czyKolizja_start";
+//	for (auto organizm : this->Organizmy)   // organizm*
 //	{
-//		mapa.at(organizm->getPozX()).at(organizm->getPozY()) = organizm->rysowanie();
+//		std::cout << "czyKolizja_for";
+//		if (organizm->getCzyZyje() 
+//			&& organizm->getPozX() == polozenieX 
+//			&& organizm->getPozY() == polozenieY)
+//		{
+//			std::cout << "czyKolizja_ret_org";
+//			return organizm;
+//		}
 //	}
-//	//Wyswietlenie
-//	for (size_t i = 0; i < mapa.size(); ++i) {
-//		for (size_t j = 0; j < mapa.at(i).size(); ++j)
-//			cout << mapa.at(i).at(j) << ' ';
+//	std::cout << "czyKolizja_ret_nullptr";
+//	return nullptr;
 //
-//		cout << endl;
-//	}
+//	//Pokombinowaæ??
+//	//Organizm* organizm;
+//
+//	//if (polozenieX == organizm->getPozX() && polozenieX == organizm->getPozX())
+//	//{
+//	//	return organizm;
+//	//}
+//	//return nullptr; // Gdy nie ma organizmu
 //}
 
-=======
-
-	
+Swiat::Swiat()
+{
+	this->listaOrganizmow();
+	this->mapa();
 }
 
 Swiat::Swiat(int x, int y)
@@ -203,7 +204,7 @@ Swiat::Swiat(int x, int y)
 	this->listaOrganizmow();
 	for (auto organizm : this->Organizmy)
 	{
-		mapa.at(organizm->getPozX()).at(organizm->getPozY()) = organizm->rysowanie();
+		mapa.at(organizm->getPozX()).at(organizm->getPozY()) = organizm->getSymbol();
 	}
 	//Wyswietlenie
 	for (size_t i = 0; i < mapa.size(); ++i) {
@@ -214,7 +215,6 @@ Swiat::Swiat(int x, int y)
 	}
 }
 
->>>>>>> parent of cfc2680... Migracja metod
 Swiat::~Swiat()
 {
 

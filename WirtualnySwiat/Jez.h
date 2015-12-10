@@ -1,11 +1,11 @@
 #pragma once
 #include "Zwierze.h"
-class Wilk :
+class Jez :
 	public Zwierze
 {
 public:
 	char getSymbol() override;
-	Wilk(Swiat* swiat, int pozycjaX, int pozycjaY);
-	~Wilk();
+	Jez(Swiat* swiat, int pozycjaX, int pozycjaY);
+	~Jez();
 };
 
