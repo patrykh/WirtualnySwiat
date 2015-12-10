@@ -55,6 +55,7 @@ void Organizm::usunMartweOrganizmy()
 	});
 }
 
+
 void Organizm::gin()
 {
 	czyZyje = false;
@@ -67,6 +68,7 @@ void Organizm::setPozycja(int x, int y)
 	this->polozenieY = y;
 }
 
+<<<<<<< HEAD
 
 Organizm* Organizm::czyKolizja(int polozenieX, int polozenieY)
 {
@@ -97,6 +99,8 @@ Organizm* Organizm::czyKolizja(int polozenieX, int polozenieY)
 
 
 
+=======
+>>>>>>> parent of cfc2680... Migracja metod
 Organizm::Organizm()
 {
 }

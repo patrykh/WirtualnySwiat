@@ -2,7 +2,7 @@
 #include "Swiat.h"
 #include <iostream>
 
-void Zwierze::akcja(int wymiarX, int wymiarY)
+void Zwierze::akcja()
 {
 	std::cout << "akcja1";
 	const int ruchy[2] = { -1, 1 }; 
@@ -17,9 +17,9 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 	//polozenie organizmu
 	int _polozenieX = polozenieX; 
 	int	_polozenieY = polozenieY;
-	//int wymiarX = swiat->getRozmiarX();
+	int wymiarX = 20;// Swiat->getRozmiarX();
 	std::cout << "akcja2";
-	//int wymiarY = swiat->getRozmiarY();
+	int wymiarY = 20;// Swiat->getRozmiarY();
 	std::cout << "akcja3";
 	index = (rand() % 2);
 	ruch = ruchy[index];
@@ -33,7 +33,11 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 			if (_polozenieX + ruch < wymiarX || _polozenieX + ruch > 0)
 			{
 				std::cout << "akcja7";
+<<<<<<< HEAD
 				if (this->czyKolizja(_polozenieX + ruch, _polozenieY) == nullptr)
+=======
+				if (Swiat->czyKolizja(_polozenieX + ruch, _polozenieY) == nullptr)
+>>>>>>> parent of cfc2680... Migracja metod
 				{
 					std::cout << "akcja8";
 					this->polozenieX += ruch;
@@ -42,7 +46,11 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 
 				} else
 				{
+<<<<<<< HEAD
 					przeciwnik = this->czyKolizja(_polozenieX + ruch, _polozenieY);
+=======
+					przeciwnik = Swiat->czyKolizja(_polozenieX + ruch, _polozenieY);
+>>>>>>> parent of cfc2680... Migracja metod
 					kolizja(przeciwnik);
 				}
 				
@@ -53,7 +61,11 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 			if (_polozenieY + ruch < wymiarY || _polozenieY + ruch > 0)
 			{
 				std::cout << "akcja7";
+<<<<<<< HEAD
 				if (this->czyKolizja(_polozenieX, _polozenieY + ruch) == nullptr)
+=======
+				if (Swiat->czyKolizja(_polozenieX, _polozenieY + ruch) == nullptr)
+>>>>>>> parent of cfc2680... Migracja metod
 				{
 					std::cout << "akcja8";
 					this->polozenieY += ruch;
@@ -62,7 +74,11 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 				}
 				else
 				{
+<<<<<<< HEAD
 					przeciwnik = this->czyKolizja(_polozenieX, _polozenieY + ruch);
+=======
+					przeciwnik = Swiat->czyKolizja(_polozenieX, _polozenieY + ruch);
+>>>>>>> parent of cfc2680... Migracja metod
 					kolizja(przeciwnik);
 				}
 				
@@ -76,16 +92,13 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 
 bool Zwierze::kolizja(Organizm* przeciwnik)
 {
-	std::cout << "kolizja_start";
 	if (this->getSila() > przeciwnik->getSila())
 	{
-		std::cout << "kolizja_if";
 		//usuñ przeciwnika 
 		// Jak usun¹æ przeciwnika?
 		przeciwnik->gin();
 	} else
 	{
-		std::cout << "kolizja_else";
 		this->gin();
 	}
 	return false;
