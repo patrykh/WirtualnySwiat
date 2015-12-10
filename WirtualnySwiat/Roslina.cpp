@@ -1,7 +1,7 @@
 #include "Roslina.h"
 
 
-void Roslina::akcja()
+void Roslina::akcja(int wymiarX, int wymiarY)
 {
 }
 

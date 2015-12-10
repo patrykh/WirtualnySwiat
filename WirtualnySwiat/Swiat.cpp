@@ -24,19 +24,7 @@ int Swiat::getRozmiarY()
 	return this->y;
 }
 
-void Swiat::dodajOrganizmy(Organizm* nowyOrganizm)
-{
-	this->Organizmy.push_back(nowyOrganizm);
-}
-
-void Swiat::listaOrganizmow()
-{
-	this->dodajOrganizmy(new Wilk(2, 5));
-	this->dodajOrganizmy(new Wilk(8, 9));
-	this->dodajOrganizmy(new Wilk(7, 6));
-}
-
-void Swiat::wykonajTure()//int numerTury)
+void Swiat::wykonajTure(Organizm *& organizm)//int numerTury)
 {
 	// TODO metoda sortowanie
 	int wymiarX = this->getRozmiarX();
@@ -46,93 +34,23 @@ void Swiat::wykonajTure()//int numerTury)
 	// if czy zyje -> akcja() else -> brak
 	// usun martwe organizmy
 	cout << "wykonajTure";
-	this->sortujOrganizmy();
+	organizm->sortujOrganizmy();
 	//auto aktualneOrganizmy = this->Organizmy;
-	for (auto organizm : Organizmy)
+	for (auto o : o->Organizmy)
 	{
 		cout << "wykonajTure_for";
-		if (organizm->getCzyZyje())
+		if (o->getCzyZyje())
 		{
 			cout << "wykonajTure_if";
-			organizm->akcja(wymiarX, wymiarY);
+			o->akcja(wymiarX, wymiarY);
 		}
 	}
 	cout << "wykonajTure koniec";
-	this->usunMartweOrganizmy();
+	organizm->usunMartweOrganizmy();
 	numerTury++;
 }
 
-void Swiat::sortujOrganizmy()
-{
-	this->Organizmy.sort([](Organizm* lewy, Organizm* prawy)
-	{
-		if (lewy->getInicjatywa() > prawy->getInicjatywa())
-		{
-			return true;
-		}
-		else if (lewy->getInicjatywa() == prawy->getInicjatywa())
-		{
-			if (lewy->getWiek() > prawy->getWiek())
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-		else
-		{
-			return false;
-		}
-	});
-}
-
-void Swiat::usunMartweOrganizmy()
-{
-	this->Organizmy.remove_if([](Organizm* organizm)
-	{
-		if (organizm->getCzyZyje() == false)
-		{
-			delete organizm; // TODO czy delete jest potrzebne??
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	});
-}
-
-Organizm* Swiat::czyKolizja(int polozenieX, int polozenieY)
-{
-	std::cout << "czyKolizja_start";
-	//for (auto organizm : swiat->Organizmy)   // organizm*
-	//{
-	//	std::cout << "czyKolizja_for";
-	//	if (organizm->getCzyZyje()
-	//		&& organizm->getPozX() == polozenieX
-	//		&& organizm->getPozY() == polozenieY)
-	//	{
-	//		std::cout << "czyKolizja_ret_org";
-	//		return organizm;
-	//	}
-	//}
-	std::cout << "czyKolizja_ret_nullptr";
-	return nullptr;
-
-	//Pokombinowaæ??
-	//Organizm* organizm;
-
-	//if (polozenieX == organizm->getPozX() && polozenieX == organizm->getPozX())
-	//{
-	//	return organizm;
-	//}
-	//return nullptr; // Gdy nie ma organizmu
-}
-
-
-void Swiat::mapa()
+void Swiat::mapa(Organizm *& organizm)
 {
 	vector< vector<char> > mapa(20, vector<char>(20, '+'));
 
@@ -143,9 +61,9 @@ void Swiat::mapa()
 
 	//Wypelnienie organizmami
 
-	for (auto organizm : this->Organizmy)
+	for (auto o : o->Organizmy)
 	{
-		mapa.at(organizm->getPozX()).at(organizm->getPozY()) = organizm->rysowanie();
+		mapa.at(o->getPozX()).at(o->getPozY()) = o->rysowanie();
 	}
 
 	//Wyswietlenie
@@ -159,55 +77,29 @@ void Swiat::mapa()
 	cout << endl;
 }
 
-//Organizm* Swiat::czyKolizja(int polozenieX, int polozenieY)
+Swiat::Swiat(Organizm *& organizm)
+{
+	organizm->listaOrganizmow();
+	this->mapa(organizm);
+
+}
+
+//Swiat::Swiat(int x, int y)
 //{
-//	std::cout << "czyKolizja_start";
-//	for (auto organizm : this->Organizmy)   // organizm*
+//	vector< vector<char> > mapa(x, vector<char>(y, '+'));
+//	this->listaOrganizmow();
+//	for (auto organizm : this->Organizmy)
 //	{
-//		std::cout << "czyKolizja_for";
-//		if (organizm->getCzyZyje() 
-//			&& organizm->getPozX() == polozenieX 
-//			&& organizm->getPozY() == polozenieY)
-//		{
-//			std::cout << "czyKolizja_ret_org";
-//			return organizm;
-//		}
+//		mapa.at(organizm->getPozX()).at(organizm->getPozY()) = organizm->rysowanie();
 //	}
-//	std::cout << "czyKolizja_ret_nullptr";
-//	return nullptr;
+//	//Wyswietlenie
+//	for (size_t i = 0; i < mapa.size(); ++i) {
+//		for (size_t j = 0; j < mapa.at(i).size(); ++j)
+//			cout << mapa.at(i).at(j) << ' ';
 //
-//	//Pokombinowaæ??
-//	//Organizm* organizm;
-//
-//	//if (polozenieX == organizm->getPozX() && polozenieX == organizm->getPozX())
-//	//{
-//	//	return organizm;
-//	//}
-//	//return nullptr; // Gdy nie ma organizmu
+//		cout << endl;
+//	}
 //}
-
-Swiat::Swiat()
-{
-	this->listaOrganizmow();
-	this->mapa();
-}
-
-Swiat::Swiat(int x, int y)
-{
-	vector< vector<char> > mapa(x, vector<char>(y, '+'));
-	this->listaOrganizmow();
-	for (auto organizm : this->Organizmy)
-	{
-		mapa.at(organizm->getPozX()).at(organizm->getPozY()) = organizm->rysowanie();
-	}
-	//Wyswietlenie
-	for (size_t i = 0; i < mapa.size(); ++i) {
-		for (size_t j = 0; j < mapa.at(i).size(); ++j)
-			cout << mapa.at(i).at(j) << ' ';
-
-		cout << endl;
-	}
-}
 
 Swiat::~Swiat()
 {

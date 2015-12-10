@@ -13,9 +13,19 @@ protected:
 	std::string gatunek;
 	//Swiat* swiat = 0;
 public:
+	std::list <Organizm*> Organizmy; // ?? sortowanie listy wed³ug inicjatywy (albo wieku?)
+
 	//polozenie(x,y)
+
+	// Z klasy swiat
+	void dodajOrganizmy(Organizm* nowyOrganizm);
+	void listaOrganizmow();
+	void sortujOrganizmy();
+	void usunMartweOrganizmy();
+	Organizm* czyKolizja(int polozenieX, int polozenieY);
+
 	//referencja do swiata
-	virtual void akcja() = 0;
+	virtual void akcja(int wymiarX, int wymiarY) = 0;
 	virtual bool kolizja(Organizm* organizm) = 0;
 	virtual char rysowanie() = 0;
 

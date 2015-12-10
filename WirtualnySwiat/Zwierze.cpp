@@ -33,7 +33,7 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 			if (_polozenieX + ruch < wymiarX || _polozenieX + ruch > 0)
 			{
 				std::cout << "akcja7";
-				if (swiat->czyKolizja(_polozenieX + ruch, _polozenieY) == nullptr)
+				if (this->czyKolizja(_polozenieX + ruch, _polozenieY) == nullptr)
 				{
 					std::cout << "akcja8";
 					this->polozenieX += ruch;
@@ -42,7 +42,7 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 
 				} else
 				{
-					przeciwnik = swiat->czyKolizja(_polozenieX + ruch, _polozenieY);
+					przeciwnik = this->czyKolizja(_polozenieX + ruch, _polozenieY);
 					kolizja(przeciwnik);
 				}
 				
@@ -53,7 +53,7 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 			if (_polozenieY + ruch < wymiarY || _polozenieY + ruch > 0)
 			{
 				std::cout << "akcja7";
-				if (swiat->czyKolizja(_polozenieX, _polozenieY + ruch) == nullptr)
+				if (this->czyKolizja(_polozenieX, _polozenieY + ruch) == nullptr)
 				{
 					std::cout << "akcja8";
 					this->polozenieY += ruch;
@@ -62,7 +62,7 @@ void Zwierze::akcja(int wymiarX, int wymiarY)
 				}
 				else
 				{
-					przeciwnik = swiat->czyKolizja(_polozenieX, _polozenieY + ruch);
+					przeciwnik = this->czyKolizja(_polozenieX, _polozenieY + ruch);
 					kolizja(przeciwnik);
 				}
 				

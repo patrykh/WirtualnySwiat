@@ -5,7 +5,7 @@ class Zwierze :
 	public Organizm
 {
 public:
-	void akcja() override; // ruch
+	void akcja(int wymiarX, int wymiarY) override; // ruch
 	bool kolizja(Organizm* organizm) override; // walka lub rozmana¿anie
 	Zwierze();
 	~Zwierze();

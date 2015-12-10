@@ -12,23 +12,15 @@ protected:
 	int y = 20;
 	int numerTury = 0;
 public:
-	std::list <Organizm*> Organizmy; // ?? sortowanie listy wed³ug inicjatywy (albo wieku?)
-
+	friend class Organizm;
 	void SetRozmiar(int x, int y);
 	int getRozmiarX();
 	int getRozmiarY();
-
-	void dodajOrganizmy(Organizm* nowyOrganizm);
-	void listaOrganizmow();
-	void wykonajTure();// int numerTury);
-	void sortujOrganizmy();
-	void usunMartweOrganizmy();
-	void mapa();
-
-
-	Organizm* czyKolizja(int polozenieX,int polozenieY);
-	Swiat();
-	Swiat(int x, int y); 
+	void wykonajTure(Organizm *& organizm);// int numerTury);
+	void mapa(Organizm *& organizm);
+		
+	Swiat(Organizm *& organizm);
+	//Swiat(int x, int y); 
 	~Swiat();
 };
 
